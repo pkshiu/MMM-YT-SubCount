@@ -22,7 +22,18 @@ module.exports = NodeHelper.create({
         this.channelIds = payload.channelIds;
         this.breakDownChannelIds();
         break;
-      case "UPDATE_PLEASE":
+
+        case "MMM-YT-SubCount-START_TIMER":
+          console.log(`start update timer, every ${payload.updateIntervalMinutes}`)
+          setInterval(() => {
+                  console.log('YT: doing node work, getting sub data')
+                  this.breakDownChannelIds();
+              }
+              , payload.updateIntervalMinutes*60000)
+      
+          break
+
+          case "UPDATE_PLEASE":
         this.crypto();
         break;
     }

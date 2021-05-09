@@ -14,6 +14,14 @@ Version 1.0.0
 | :-------------------------------------------------------------------: | -------------------------------------------------------------------- |
 |             YouTube Subscriber Counter with profile image             | YouTube Subscriber Counter without profile image                     |
 
+## Update
+
+Forked from original. Fixed:
+
+- refresh YT sub counts periodically
+- implement refresh logic in node_helper and message front end with changes
+- refresh interval is defined by updateIntervalMinutes
+
 ## Installation
 
 This module is pretty simple to set up. You simply need to clone the module into your modules folder (like other modules).

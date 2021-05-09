@@ -14,7 +14,7 @@ Module.register("MMM-YT-SubCount", {
       }
     ],
     showChannelImg: true,
-    updateInterval: 60000
+    updateIntervalMinutes: 1
   },
 
   requiresVersion: "2.1.0", // Required version of MagicMirror
@@ -25,9 +25,7 @@ Module.register("MMM-YT-SubCount", {
 
     // Schedule update timer.
     this.sendSocketNotification("MMM-YT-SubCount-HERE_IS_CONFIG", this.config);
-    setInterval(function () {
-      self.updateDom();
-    }, this.config.updateInterval);
+    this.sendSocketNotification("MMM-YT-SubCount-START_TIMER", this.config);
   },
 
   getDom: function () {
@@ -74,7 +72,8 @@ Module.register("MMM-YT-SubCount", {
   numFormatter: function (num) {
     if (Math.abs(num) > 999999) {
       return Math.sign(num) * (Math.abs(num) / 1000000).toFixed(1) + "M";
-    } else if (Math.abs(num) > 999) {
+    } else if (Math.abs(num) > 9999) {
+      // TEMP: disable rounding up because we care about each subscriber change
       return Math.sign(num) * (Math.abs(num) / 1000).toFixed(1) + "K";
     } else {
       return Math.sign(num) * Math.abs(num);
